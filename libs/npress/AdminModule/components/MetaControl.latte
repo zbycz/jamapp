@@ -1,0 +1,38 @@
+
+
+<h3 id='toc-meta'>další nastavení: <small><input type="checkbox" id="js-showHiddenMeta" class="hidden"> zobrazit</small></h3>
+<div id='js-meta-content' class='jshidden'>
+<ul>
+	<li>.category=yes, .hideTextInput=yes, .template=file (latte file in theme/), hideHeading, .filesSync
+	<li>id_page: {$page[id_page]}
+	<li>id_parent: {$page[id_parent]}
+	<li>ord: {$page[ord]}
+</ul>
+
+{* js events delegated to #js-meta *}
+<div id='js-meta' class="form-horizontal">
+<div n:snippet="editpage_metalist" data-afterUpdate="metalist_reflectCheckbox">
+		<div n:foreach="$page->meta as $key=>$val">
+			<form action="{link saveEditForm}" method="post" class="ajax control-group">
+				<label for='meta-{$key}' class="control-label">{$key}</label>
+				<div class="controls">
+					<input type='hidden' name='key' value='{$key}'>
+					<input type='text' name='value' id='meta-{$key}' value='{$val}' class='js-meta-key' data-saved="{$val}">
+					<input type='submit' value='Upravit' class="jshidden btn">
+					<a n:href="delete $key" class='del ajax' title='smazat'>×</a>
+				</div>
+			</form>
+		</div>
+
+	{form metaAddForm}
+		{input key placeholder=>'(název)'}: {input value} {input submit1 class=>"btn"}
+	{/form}
+
+	<noscript>Pozor, nastavení lze upravovat pouze JEDNOTLIVĚ.</noscript>
+</div>
+</div>
+<p {*n:if="count($langs)>1"*}>Nastavení jsou společná napříč jazykovými mutacemi.</p>
+
+</div>
+
+

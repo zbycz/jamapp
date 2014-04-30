@@ -1,0 +1,14 @@
+{block title}{$page[heading]}{/block}
+
+{block content}
+<h2>{$page[heading]}</h2>
+
+<div n:foreach="$flashes as $flash" class="flash">
+	{$flash->message}
+</div>
+
+{if $presenter->triggerEvent('allowPageContentDisplay')}
+	{if $presenter->triggerEvent('displayPageContent')}
+		{!$page->content}
+	{/if}
+{/if}
