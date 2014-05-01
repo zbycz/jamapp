@@ -22,7 +22,7 @@ class PagesRouter implements IRouter
 	}
 
 	function getDefaultLang(){
-		return 'cs'; //TODO get from config (also in CommonBasePresenter)
+		return 'en'; //TODO get from config (also in CommonBasePresenter)
 	}
 
 	function match(IHttpRequest $httpRequest){

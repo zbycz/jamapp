@@ -1,0 +1,26 @@
+{block title}{if $x=$page->getMeta('html-title')}{$x}{else}{$page[heading]}{/if}{/block}
+
+{block layout_aftertitle}{if $x=$page->getMeta('html-aftertitle')}{$x}{else}{include #parent}{/if}{/block}
+
+{block content}
+
+
+<div n:foreach="$flashes as $flash" class="flash">
+	{$flash->message}
+</div>
+
+{if $presenter->triggerEvent('allowPageContentDisplay')}
+	{if $presenter->triggerEvent('displayPageContent')}
+		{!$page->content}
+	{/if}
+{/if}
+
+	<form class="form-signin" role="form">
+      <h2 class="form-signin-heading">{$page[heading]}</h2>
+      <input type="text" class="form-control" placeholder="Group ID" required autofocus>
+      <input type="password" class="form-control" placeholder="Password" required>
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>

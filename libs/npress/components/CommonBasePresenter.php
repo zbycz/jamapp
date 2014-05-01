@@ -16,7 +16,7 @@
 abstract class CommonBasePresenter extends Presenter
 {
 	/** @persistent */
-	public $lang = 'cs'; //TODO from config (https://github.com/nette/nette/pull/445)
+	public $lang = 'en'; //TODO from config (https://github.com/nette/nette/pull/445)
 
 	public $pages;
 
