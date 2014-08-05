@@ -15,6 +15,15 @@
 }
 
 
+.flash {
+padding: 15px;
+margin-bottom: 20px;
+border: 1px solid rgba(0, 0, 0, 0);
+border-radius: 4px;
+color: #8A6D3B;
+background-color: #FCF8E3;
+border-color: #FAEBCC;
+}
 
 .form-signin {
   max-width: 330px;

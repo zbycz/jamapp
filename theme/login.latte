@@ -15,10 +15,10 @@
 	{/if}
 {/if}
 
-	<form class="form-signin" role="form">
+	<form class="form-signin" role="form" method="post" action="?do=CejAuthPlugin-login">
       <h2 class="form-signin-heading">{$page[heading]}</h2>
-      <input type="text" class="form-control" placeholder="Group ID" required autofocus>
-      <input type="password" class="form-control" placeholder="Password" required>
+      <input name='mail' type="text" class="form-control" placeholder="Patrol leader mail" required autofocus>
+      <input name='passw' type="password" class="form-control" placeholder="Patrol leader personal ID" required>
       <label class="checkbox">
         <input type="checkbox" value="remember-me"> Remember me
       </label>

@@ -7,7 +7,11 @@
 
 
 common:
-
+	parameters:
+		plugins:
+			CejAuthPlugin: true
+		
+		
 production < common:
 development < common:
 console < common:

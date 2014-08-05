@@ -50,7 +50,7 @@ production < common:
 			host: localhost
 			driver: mysqli
 			database: zbycz_cej
-			username: zbycz_cej
+			username: root
 			password: huae9456
 	
 		npress:

@@ -36,7 +36,7 @@ $configurator->addParameters(array(
 		));
 
 // Enable Nette Debugger for error visualisation & logging
-//$configurator->setProductionMode($configurator::AUTO);
+$configurator->setProductionMode(false);
 $configurator->enableDebugger(APP_DIR . '/log');
 function barDump($x){Debugger::barDump($x);}
 

@@ -1,0 +1,77 @@
+{block title}{if $x=$page->getMeta('html-title')}{$x}{else}{$page[heading]}{/if}{/block}
+
+{block layout_aftertitle}{if $x=$page->getMeta('html-aftertitle')}{$x}{else}{include #parent}{/if}{/block}
+
+{block content}
+
+{var $qr = substr($page[seoname],1)}
+{var $points = $page->getMeta('points')}
+
+{if $qr != 'qr'}
+	<h2>QR CODE: {$qr}</h2>
+	
+	
+	
+	{if !$user->isInRole('user')}
+	<p>You have sucessfully scanned the code! Its valued {$points} point(s). To gain them to your score - please login below (or tell it to INFO TENT)
+	
+	<div n:foreach="$flashes as $flash" class="flash">
+		{$flash->message}
+	</div>
+	
+	
+		<form class="form-signin" role="form" method="post" action="?do=CejAuthPlugin-login">
+	      <!-- <h2 class="form-signin-heading">{$page[heading]}</h2> -->
+	      <input name='mail' type="text" class="form-control" placeholder="Patrol leader mail" required autofocus>
+	      <input name='passw' type="password" class="form-control" placeholder="Group ID" required>
+	      <!-- <label class="checkbox">
+	        <input type="checkbox" value="remember-me"> Remember me
+	      </label> -->
+	      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	    </form>
+	{else}
+	
+	
+	<?php
+	 $qr_scanned = dibi::query('SELECT qr_scanned FROM patrols WHERE id=%s',$user->id)->fetchSingle();
+	 
+	 $found = false;
+	 foreach(explode("\n", $qr_scanned) as $r)
+	 	if (trim($r) == $qr) $found = true;
+	 	
+	 	$qrx = "$qr\n";
+	 	if (!$found)
+	 		dibi::query('UPDATE patrols SET qr_scanned = CONCAT(qr_scanned,%s',$qrx,'), qr_total=qr_total+%i',$points,' WHERE id=%s',$user->id);
+	?>
+	
+	
+	{if !$found}
+		<p class='flash'>Great, you have just gained {$points} point(s) to your patrol {$user->identity->data['id']}.
+	{else}
+		<p class='flash'>You have already scanned this code to your patrol {$user->identity->data['id']}. Try to find another one.
+	{/if}
+	
+	
+	{/if}
+		
+	
+	{if strlen($page->content) >10}
+		<hr>
+		<p>This QR code contains also some intersting content for you:
+		
+		{if $presenter->triggerEvent('allowPageContentDisplay')}
+			{if $presenter->triggerEvent('displayPageContent')}
+				{!$page->content}
+			{/if}
+		{/if}
+	{/if}
+
+
+	
+{else}
+	<h2>{$page[heading]}</h2>
+					{!$page->content}
+
+{/if}
+
+

@@ -29,10 +29,11 @@
     <img src="{$basePath}/theme/images/logo.png" width="30" height="30">
     </div>
       <ul class="navi">
-        <li class="active"><a href="/"><span class="glyphicon glyphicon-info-sign"></span> <span class="text">Info</span></a></li>
-        <li><a href="/patrols"><span class="glyphicon glyphicon-user"></span> <span class="text">Patrols</span></a></li>
-        <li><a href="/qr"><img src='{$basePath}/theme/images/qr-icon.png'> <span class="text">QR</span></a></li>
-        <li><a href="/notifications"><span class="glyphicon glyphicon-exclamation-sign"></span> <span class="text">Notifications</span></a></li>
+        <li{if isset($page) && $page->id == 1} class='active'{/if}><a href="/"><span class="glyphicon glyphicon-exclamation-sign"></span> <span class="text">Info</span></a></li>
+				<li{if isset($page) && $page->id == 5} class='active'{/if}><a href="/handbook"><span class="glyphicon glyphicon-info-sign"></span> <span class="text">Handbook</span></a></li>
+        <li{if isset($page) && $page->id == 2} class='active'{/if}><a href="/patrols"><span class="glyphicon glyphicon-user"></span> <span class="text">Patrols</span></a></li>
+        <li{if isset($page) && $page->id == 3} class='active'{/if}><a href="/qr"><img src='{$basePath}/theme/images/qr-icon.png'> <span class="text">QR</span></a></li>
+        
 			</ul>
     </div><!--/.nav-collapse -->
   </div>
