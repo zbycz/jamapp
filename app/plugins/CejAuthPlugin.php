@@ -35,7 +35,7 @@ class CejAuthPlugin extends Control
 	public function handleLogin(){
 
 		
-		$row = dibi::query('SELECT * FROM patrols WHERE pl_mail = %s',$_POST['mail'])->fetch();
+		$row = dibi::query('SELECT * FROM patrols WHERE LOWER(pl_mail) = %s', strtolower($_POST['mail']))->fetch();
 		if(!$row OR strtolower($row['id']) != strtolower($_POST['passw'])){
 					$this->presenter->flashMessage('Sorry you have put in wrong email or ID, try again or conact INFO TENT.');
 				$this->presenter->redirect('this');

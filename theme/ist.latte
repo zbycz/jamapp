@@ -19,17 +19,19 @@
 <table border=1 style=border-collapse:collapse>
 <tr>
 <th>ID
-<th>Troop
-<th>Patrol leader
+<th>Country
+<th>Name + Nick
+<th>Team
 <th>QR points
 <th>scans
 </tr>
 
-{foreach dibi::query('SELECT * FROM patrols WHERE contingent != "ist" ORDER BY qr_total DESC') as $r}
+{foreach dibi::query('SELECT * FROM patrols WHERE contingent = "ist" ORDER BY qr_total DESC') as $r}
 <tr>
 <td>{$r[id]}
+<td>{$r[country]}
+<td>{$r[pl_name]} {$r[pl_surname]}{$r['pl_nick']?" - $r[pl_nick]":''}
 <td>{$r[troop]}
-<td>{$r[pl_nick]?:$r[pl_name]}
 <td>{$r[qr_total]} p.
 <td><small n:if="$r[qr_total]">{substr_count($r['qr_scanned'], "\n")}×</small>
 </tr>
