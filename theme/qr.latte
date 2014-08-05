@@ -13,7 +13,7 @@
 	
 	
 	{if !$user->isInRole('user')}
-	<p>You have sucessfully scanned the code! Its valued {$points} point(s). To gain them to your score - please login below (or tell it to INFO TENT)
+	<p>You have sucessfully scanned the code! Its valued {$points} point(s). To gain them to your score - please login below (or tell it to INFO TENT).
 	
 	<div n:foreach="$flashes as $flash" class="flash">
 		{$flash->message}
@@ -22,8 +22,8 @@
 	
 		<form class="form-signin" role="form" method="post" action="?do=CejAuthPlugin-login">
 	      <!-- <h2 class="form-signin-heading">{$page[heading]}</h2> -->
-	      <input name='mail' type="text" class="form-control" placeholder="Patrol leader mail" required autofocus>
-	      <input name='passw' type="password" class="form-control" placeholder="Group ID" required>
+	      PL mail: <input name='mail' type="text" class="form-control" placeholder="Patrol leader mail" required autofocus>
+	      Group ID: <input name='passw' type="password" class="form-control" placeholder="Group ID" required>
 	      <!-- <label class="checkbox">
 	        <input type="checkbox" value="remember-me"> Remember me
 	      </label> -->
@@ -55,7 +55,7 @@
 	{/if}
 		
 	
-	{if strlen($page->content) >10}
+	{if strlen($page->content) >20}
 		<hr>
 		<p>This QR code contains also some intersting content for you:
 		
@@ -70,7 +70,7 @@
 	
 {else}
 	<h2>{$page[heading]}</h2>
-					{!$page->content}
+	{!$page->content}
 
 {/if}
 
